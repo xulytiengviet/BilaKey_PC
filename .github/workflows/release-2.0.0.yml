@@ -1,0 +1,145 @@
+name: Publish BilaKey PC 2.0.0
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/release-2.0.0.yml"
+      - "internal/typingstate/caps_test.go"
+      - "README.md"
+      - "docs/RELEASE_NOTES_2.0.0.md"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bilakey-release-2.0.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build and publish portable Windows package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.x"
+
+      - name: Verify source
+        run: |
+          test -z "$(gofmt -l cmd internal)"
+          go test ./... -count=1
+          go vet ./...
+
+      - name: Build x64, x86 and ARM64
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist package/BilaKey-PC-2.0.0-Windows
+
+          build_one() {
+            local arch="$1"
+            local suffix="$2"
+            echo "Building Windows ${suffix}..."
+            CGO_ENABLED=0 GOOS=windows GOARCH="${arch}" \
+              go build -trimpath \
+              -ldflags='-s -w -H windowsgui -buildid=' \
+              -o "dist/BilaKey-PC-2.0.0-CVNSS-Core-${suffix}.exe" \
+              ./cmd/bilakey
+          }
+
+          build_one amd64 x64
+          build_one 386 x86
+          build_one arm64 arm64
+
+          cp dist/*.exe package/BilaKey-PC-2.0.0-Windows/
+          cp LICENSE README.md CHANGELOG.md package/BilaKey-PC-2.0.0-Windows/
+
+          cat > package/BilaKey-PC-2.0.0-Windows/README_FIRST.txt <<'TXT'
+          BILAKEY PC 2.0.0 — CVNSS4.0 CORE EDITION
+
+          Chọn tệp:
+          - x64: máy Intel/AMD hiện đại, khuyến nghị.
+          - arm64: Windows on ARM, Snapdragon.
+          - x86: Windows 32-bit cũ.
+
+          Cách dùng:
+          1. Chạy trực tiếp tệp EXE, không cần cài đặt.
+          2. Ctrl+Shift+Space: bật/tắt BilaKey.
+          3. Ctrl+Shift+1: chọn CVNSS4.0 Core.
+          4. Ctrl+Shift+0: đổi ứng viên CVNSS nhập nhằng.
+
+          Bản này chưa ký Authenticode. Chỉ tải từ GitHub chính thức và kiểm tra SHA-256.
+
+          Phát triển: Long Ngo.
+          Hỗ trợ CVNSS4.0: NNC Trần Tư Bình và cộng đồng CVNSS4.0/BilaKey.
+          Giấy phép: MIT.
+          TXT
+
+          (
+            cd package/BilaKey-PC-2.0.0-Windows
+            sha256sum *.exe > SHA256SUMS.txt
+          )
+
+          (
+            cd package
+            zip -9 -r ../dist/BilaKey-PC-2.0.0-Windows.zip BilaKey-PC-2.0.0-Windows
+          )
+
+          (
+            cd dist
+            sha256sum *.exe *.zip > SHA256SUMS-2.0.0.txt
+          )
+
+          ls -lh dist
+          cat dist/SHA256SUMS-2.0.0.txt
+
+      - name: Align tag 2.0.0 with published source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -fa 2.0.0 -m "BilaKey PC 2.0.0 — CVNSS4.0 Core Edition" "${GITHUB_SHA}"
+          git push --force origin refs/tags/2.0.0
+
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view 2.0.0 >/dev/null 2>&1; then
+            gh release edit 2.0.0 \
+              --title "BilaKey PC 2.0.0 — CVNSS4.0 Core Edition" \
+              --notes-file docs/RELEASE_NOTES_2.0.0.md
+          else
+            gh release create 2.0.0 \
+              --title "BilaKey PC 2.0.0 — CVNSS4.0 Core Edition" \
+              --notes-file docs/RELEASE_NOTES_2.0.0.md \
+              --target "${GITHUB_SHA}"
+          fi
+
+          gh release upload 2.0.0 \
+            dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe \
+            dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe \
+            dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe \
+            dist/BilaKey-PC-2.0.0-Windows.zip \
+            dist/SHA256SUMS-2.0.0.txt \
+            --clobber
+
+      - name: Preserve build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: BilaKey-PC-2.0.0-release-assets
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 30
