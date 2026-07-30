@@ -18,13 +18,13 @@ go vet ./...
 
 ## Thay đổi oracle
 
-Không sửa trực tiếp `internal/core/cvnss_generated.go`. Sửa oracle hoặc generator, sau đó chạy:
+Không sửa trực tiếp `internal/core/cvnss_generated.go`. Sửa dữ liệu mô-đun trong `reference/cvnss/` hoặc generator, sau đó chạy:
 
 ```bash
 python3 tools/python/generate_cvnss_go.py \
-  reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js \
-  --out internal/core/cvnss_generated.go
-gofmt -w internal/core/cvnss_generated.go
+  reference/cvnss \
+  --out-dir internal/core
+gofmt -w internal/core/cvnss_generated_*.go
 ```
 
 Mọi thay đổi invariant phải được review chuyên môn và cập nhật đặc tả.

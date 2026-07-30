@@ -33,12 +33,15 @@ jobs:
       - name: Re-generate locked Go table
         run: |
           mkdir -p .build
-          python3 tools/python/generate_cvnss_go.py reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js --out .build/cvnss_generated.go
-          gofmt -w .build/cvnss_generated.go
-          cmp .build/cvnss_generated.go internal/core/cvnss_generated.go
+          rm -rf .build/generated .build/committed
+          mkdir -p .build/generated .build/committed
+          python3 tools/python/generate_cvnss_go.py reference/cvnss --out-dir .build/generated
+          gofmt -w .build/generated/*.go
+          cp internal/core/cvnss_generated_*.go .build/committed/
+          diff -ru .build/generated .build/committed
       - name: Independent policy audit
         run: |
-          python3 tools/python/audit_cvnss.py reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js --out .build/collision_audit.tsv
+          python3 tools/python/audit_cvnss.py reference/cvnss --out .build/collision_audit.tsv
           g++ -std=c++17 -O2 -Wall -Wextra -Werror tools/cpp/collision_stats.cpp -o .build/collision_stats
           .build/collision_stats .build/collision_audit.tsv
       - name: Format, test and vet

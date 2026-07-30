@@ -6,7 +6,7 @@
 GO_BIN=go scripts/build_release.sh
 ```
 
-Toolchain đã xác minh cho bản bàn giao: Go 1.26.4, Node.js 24, Python 3, GCC/g++ 13, xz.
+Toolchain tối thiểu: Go 1.23+, Node.js 22+, Python 3.12+, g++ 13+ và xz. Bản RC này đã được xác minh với Go 1.23.2, Node.js 22.16, Python 3.13.5, g++ 14.2 và xz 5.8.1.
 
 ## Build nhanh x64
 

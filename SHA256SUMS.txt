@@ -1,6 +1,6 @@
-092df3b23b73edfb775125851d1663196ff01cd61d9cd9e87fdd6d886b26f785  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe
-5b2fffc634ba34bc04d35b747918d4d0af9518d37cded2270cbeb9c113744267  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe
-f8feb7b25a0d1baa392409a610ad51543f57fbcec86e768f602466cb48f8f536  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe
-f9cbe65c0cac5742f0ba98c040835931bb744ed0e243d96ef9c08bd4046e1379  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe.xz
-4cc6b2e14983a417078a7ddce42343522b246f2afafd8fd827e454e6f42ca782  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe.xz
-f4b26a46eebece7c5c07596de2d52037ecb28d38d7d7216d0eb2869bfb0b0936  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe.xz
+f33a4b2d7ff3e13ffd79130e410ae01c96bdcfbde198f287b68824f380ed3956  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe
+59251c57ee6859122157632c6afd580ca58309e0ba83344d003c1947a88d26fb  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe
+b922657c8c73e2aa5c8976e221442881c0d2da8db6c15f6c5ffb53da3642b448  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe
+f07ac5cfa11a52e0c16d6477f31f092a8454900168f2f90b6f0fe9a86a85d458  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe.xz
+8819ce37ddc42cb2e0b8839c60ded708aa1403988b91293aa950dd957e73ab73  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe.xz
+7d5b4aaf2e340adfc8d1b252468ceaeb5c77bdfaea174fc3daf82f15d409f679  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe.xz
