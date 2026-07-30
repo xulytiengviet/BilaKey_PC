@@ -136,6 +136,70 @@ jobs:
             dist/SHA256SUMS-2.0.0.txt \
             --clobber
 
+      - name: Verify published assets and record marker
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required=(
+            BilaKey-PC-2.0.0-CVNSS-Core-x64.exe
+            BilaKey-PC-2.0.0-CVNSS-Core-x86.exe
+            BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe
+            BilaKey-PC-2.0.0-Windows.zip
+            SHA256SUMS-2.0.0.txt
+          )
+
+          mapfile -t published < <(gh release view 2.0.0 --json assets --jq '.assets[].name' | sort)
+          printf 'Published assets:\n%s\n' "${published[*]}"
+
+          for asset in "${required[@]}"; do
+            printf '%s\n' "${published[@]}" | grep -Fxq "$asset" || {
+              echo "Missing release asset: $asset" >&2
+              exit 1
+            }
+          done
+
+          marker="$(mktemp)"
+          {
+            echo '# ✅ BilaKey PC 2.0.0 đã đóng gói và phát hành'
+            echo
+            echo "- Release: https://github.com/${GITHUB_REPOSITORY}/releases/tag/2.0.0"
+            echo "- Source commit: \`${GITHUB_SHA}\`"
+            echo "- Workflow run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "- Published at UTC: \$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo
+            echo '## Assets'
+            echo
+            for asset in "${required[@]}"; do
+              echo "- [\`${asset}\`](https://github.com/${GITHUB_REPOSITORY}/releases/download/2.0.0/${asset})"
+            done
+            echo
+            echo '## SHA-256'
+            echo
+            echo '```text'
+            cat dist/SHA256SUMS-2.0.0.txt
+            echo '```'
+          } > "$marker"
+
+          path='docs/RELEASE_PUBLISHED_2.0.0.md'
+          content="$(base64 -w 0 < "$marker")"
+          current_sha="$(gh api "repos/${GITHUB_REPOSITORY}/contents/${path}?ref=main" --jq .sha 2>/dev/null || true)"
+
+          if [[ -n "$current_sha" ]]; then
+            gh api --method PUT "repos/${GITHUB_REPOSITORY}/contents/${path}" \
+              -f message='docs: record verified BilaKey 2.0.0 release assets' \
+              -f content="$content" \
+              -f sha="$current_sha" \
+              -f branch=main >/dev/null
+          else
+            gh api --method PUT "repos/${GITHUB_REPOSITORY}/contents/${path}" \
+              -f message='docs: record verified BilaKey 2.0.0 release assets' \
+              -f content="$content" \
+              -f branch=main >/dev/null
+          fi
+
       - name: Preserve build artifacts
         uses: actions/upload-artifact@v4
         with:
