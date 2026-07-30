@@ -5,6 +5,17 @@
 
 ### Bộ gõ Windows lấy **CVNSS4.0 làm lõi**, không chỉ là một tùy chọn
 
+<a href="https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe">
+  <img src="https://img.shields.io/badge/T%E1%BA%A2I_NGAY-Windows_x64-0756d8?style=for-the-badge&logo=windows&logoColor=white" alt="Tải ngay BilaKey PC 2.0.0 cho Windows x64" />
+</a>
+
+**Máy Intel/AMD Windows 64-bit: bấm nút trên để tải `.exe` và dùng ngay — không cần cài đặt.**
+
+[![ARM64](https://img.shields.io/badge/T%E1%BA%A3i-ARM64%20%7C%20Snapdragon-173ea5?style=flat-square&logo=windows)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe)
+[![x86](https://img.shields.io/badge/T%E1%BA%A3i-Windows%2032--bit-3158a8?style=flat-square&logo=windows)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe)
+[![ZIP](https://img.shields.io/badge/T%E1%BA%A3i-G%C3%B3i%20%C4%91%E1%BA%A7y%20%C4%91%E1%BB%A7%20ZIP-5427c7?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-Windows.zip)
+[![Release](https://img.shields.io/badge/Xem-Release%202.0.0-00a86b?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/tag/2.0.0)
+
 [![Version](https://img.shields.io/badge/version-2.0.0-0756d8?style=for-the-badge)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-00a86b?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Windows-x86%20%7C%20x64%20%7C%20ARM64-0078d4?style=for-the-badge&logo=windows)](BUILD.md)
@@ -75,21 +86,23 @@ ses             sẽ
 
 Với mã nhiều nghĩa, BilaKey lưu toàn bộ candidate graph và cho phép đổi ứng viên bằng `Ctrl+Shift+0`. Các ứng viên sai cấu trúc chính tả sau một âm đầu được hạ hạng hoặc loại khỏi vòng chọn thông thường, nhưng vẫn còn trong dữ liệu audit.
 
-## 📦 Cài đặt và chạy
+## 📦 Tải về và chạy ngay
 
-### Bản phát hành Windows
+### Bản khuyến nghị
 
-Workflow CI tạo artifact Release Candidate từ chính cây nguồn này; bản phát hành chính thức sẽ được đính kèm trong mục **Releases**:
+➡️ **[Tải BilaKey PC 2.0.0 cho Windows x64](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe)**
 
-| Thiết bị | Tên artifact |
+Đây là bản dành cho phần lớn máy Windows Intel/AMD hiện nay. Sau khi tải, mở tệp `.exe` để chạy; BilaKey là ứng dụng portable, không cần cài đặt và không cần quyền Administrator.
+
+| Thiết bị | Liên kết tải trực tiếp |
 |---|---|
-| Máy Intel/AMD hiện đại | `BilaKey-PC-2.0.0-CVNSS-Core-x64.exe` — khuyến nghị |
-| Máy Windows 32-bit cũ | `BilaKey-PC-2.0.0-CVNSS-Core-x86.exe` |
-| Windows on ARM / Snapdragon | `BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe` |
+| Intel/AMD Windows 64-bit — **khuyến nghị** | [BilaKey-PC-2.0.0-CVNSS-Core-x64.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe) |
+| Windows on ARM / Snapdragon | [BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe) |
+| Windows 32-bit cũ | [BilaKey-PC-2.0.0-CVNSS-Core-x86.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe) |
+| Gói đầy đủ ba kiến trúc | [BilaKey-PC-2.0.0-Windows.zip](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-Windows.zip) |
+| SHA-256 | [SHA256SUMS-2.0.0.txt](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/SHA256SUMS-2.0.0.txt) |
 
-Bảng checksum của build RC đã xác minh nằm tại [`SHA256SUMS.txt`](SHA256SUMS.txt). Repository không theo dõi binary trong cây nguồn; artifact được sinh bởi workflow/build script để giảm rủi ro nhầm phiên bản.
-
-> Đây là **Release Candidate chưa ký Authenticode**, dù source audit và cross-build đã PASS. Chỉ dùng artifact từ Actions/Releases có SHA-256 trùng bảng công bố; nhãn stable chờ smoke-test Windows thật và ký số.
+> Bản portable 2.0.0 hiện chưa ký Authenticode, vì vậy Windows SmartScreen có thể cảnh báo ở lần chạy đầu. Chỉ tải từ repository/release chính thức và đối chiếu SHA-256 trước khi phổ biến diện rộng.
 
 ### Build từ mã nguồn
 
