@@ -3,7 +3,7 @@
 - Release: https://github.com/xulytiengviet/BilaKey_PC/releases/tag/2.0.0
 - Source commit: `191fc5ffe2458d31f36cfb7cf392b5b52317b595`
 - Workflow run: https://github.com/xulytiengviet/BilaKey_PC/actions/runs/30526785766
-- Published at UTC: $(date -u +'%Y-%m-%dT%H:%M:%SZ')
+- Published at UTC: `2026-07-30T08:28:28Z`
 
 ## Assets
 
