@@ -1,3 +1,6 @@
-3aa3513a05c944484fdd30e2381c151d3be3f15ac5d6aa0ff14050cb74e4aa70  BilaKey-PC-1.3.0-Ocean-Pro-Lite-arm64.exe
-4820744c4d6279160a4e16df46d144b3784e48cf61cc845ea88c8b7b4469678d  BilaKey-PC-1.3.0-Ocean-Pro-Lite-x64.exe
-628aab2a5c4616a0de7c153b9e4d5aec42f3c971dc9572bac3d5538a5ca1f4e2  BilaKey-PC-1.3.0-Ocean-Pro-Lite-x86.exe
+092df3b23b73edfb775125851d1663196ff01cd61d9cd9e87fdd6d886b26f785  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe
+5b2fffc634ba34bc04d35b747918d4d0af9518d37cded2270cbeb9c113744267  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe
+f8feb7b25a0d1baa392409a610ad51543f57fbcec86e768f602466cb48f8f536  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe
+f9cbe65c0cac5742f0ba98c040835931bb744ed0e243d96ef9c08bd4046e1379  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe.xz
+4cc6b2e14983a417078a7ddce42343522b246f2afafd8fd827e454e6f42ca782  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe.xz
+f4b26a46eebece7c5c07596de2d52037ecb28d38d7d7216d0eb2869bfb0b0936  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe.xz
