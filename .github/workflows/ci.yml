@@ -1,0 +1,83 @@
+name: BilaKey 2.0 CI
+
+on:
+  push:
+    branches: [main, "feat/**", "fix/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  core-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.x"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Oracle self-test
+        run: |
+          node - <<'NODE'
+          const c = require('./reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js');
+          const result = c.selfTest();
+          console.log({version: c.VERSION, audit: c.audit(), result});
+          if (!result.ok) process.exit(1);
+          NODE
+      - name: Re-generate locked Go table
+        run: |
+          mkdir -p .build
+          python3 tools/python/generate_cvnss_go.py reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js --out .build/cvnss_generated.go
+          gofmt -w .build/cvnss_generated.go
+          cmp .build/cvnss_generated.go internal/core/cvnss_generated.go
+      - name: Independent policy audit
+        run: |
+          python3 tools/python/audit_cvnss.py reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js --out .build/collision_audit.tsv
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror tools/cpp/collision_stats.cpp -o .build/collision_stats
+          .build/collision_stats .build/collision_audit.tsv
+      - name: Format, test and vet
+        run: |
+          test -z "$(gofmt -l cmd internal)"
+          go test ./... -count=1
+          go vet ./...
+      - name: Race test
+        run: go test -race ./internal/core ./internal/hotkey ./internal/macro ./internal/settings ./internal/typingstate -count=1
+      - name: Short fuzz smoke
+        run: go test ./internal/core -run '^$' -fuzz FuzzDecodeCVNSSDoesNotPanic -fuzztime 5s
+
+  windows-build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            suffix: x64
+          - arch: "386"
+            suffix: x86
+          - arch: arm64
+            suffix: arm64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.x"
+      - name: Cross-build
+        env:
+          GOOS: windows
+          GOARCH: ${{ matrix.arch }}
+          CGO_ENABLED: "0"
+        run: |
+          mkdir -p dist
+          go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o dist/BilaKey-PC-2.0.0-CVNSS-Core-${{ matrix.suffix }}.exe ./cmd/bilakey
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BilaKey-PC-2.0.0-${{ matrix.suffix }}
+          path: dist/*.exe
+          if-no-files-found: error

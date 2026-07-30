@@ -2,25 +2,30 @@
 
 ## 1. Bamboo Core
 
-BilaKey PC 1.3.0 sử dụng lại **ý tưởng kiến trúc, tên quy tắc, mô hình xử lý Telex/VNI và cấu trúc kiểm tra chính tả** từ mã nguồn Bamboo Core do người dùng cung cấp trong một phiên làm việc trước.
+BilaKey tham khảo **ý tưởng kiến trúc, tên quy tắc, mô hình xử lý Telex/VNI và cấu trúc kiểm tra chính tả** từ Bamboo Core. Phần runtime hiện tại được viết lại bằng Go, không liên kết runtime Rust.
 
-Bản được cung cấp là một Rust port của Bamboo Core gốc, phát hành theo giấy phép MIT. BilaKey PC không liên kết runtime Rust; phần chạy thực tế được viết lại bằng Go thuần.
-
-Bản quyền ghi trong giấy phép nguồn:
+Bản quyền được ghi trong nguồn tham chiếu:
 
 - Copyright (C) 2018 Luong Thanh Lam <ltlam93@gmail.com>
 - Copyright (C) 2024 nguien <nguyen10t2lhp@gmail.com>
 
 Toàn văn giấy phép được sao chép tại `docs/BAMBOO_CORE_MIT_LICENSE.txt`.
 
-## 2. CVNSS4.0 converter 5.0.0-audit-safe
+## 2. Dự án CVNSS4.0
 
-Bộ ánh xạ CVNSS4.0 trong `internal/core/cvnss_generated.go` được sinh từ tệp chuyển đổi do người dùng cung cấp: `reference/cvnss4_0_converter.pro.v5_0.audit_safe.js`.
+Bảng quy tắc và candidate graph trong `internal/core/cvnss_generated.go` được sinh từ oracle:
 
-Runtime BilaKey PC không cần Node.js hoặc JavaScript. Mọi ánh xạ cần thiết đã được chuyển thành Go map tĩnh. Candidate graph giữ 56 nhóm nhập nhằng; 56 policy canonical và 5 critical collision được kiểm tra công khai trong báo cáo audit.
+`reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js`
+
+BilaKey 2.0 bổ sung lớp resolver nhận biết âm đầu và các hồi quy dành cho hoạt động bộ gõ. Dữ liệu giữ 758 dòng gốc, 336 patch entries, 56 nhóm nhập nhằng, 56 policy canonical và 5 critical collision.
+
+Ghi nhận hỗ trợ nền tảng:
+
+- **NNC Trần Tư Bình**, thông qua dự án CVNSS4.0.
+- **Cộng đồng CVNSS4.0 và Bộ gõ BilaKey**: <https://www.facebook.com/groups/251479779599477>
 
 ## 3. BilaKey PC
 
-Phát triển: **Long Ngo, 2026**.
+Phát triển và duy trì: **Long Ngo, 2026**.
 
 Phần mã nguồn mới của BilaKey PC được phát hành theo MIT License, xem `LICENSE`.

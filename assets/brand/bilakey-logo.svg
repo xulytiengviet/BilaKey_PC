@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">BilaKey</title>
+  <desc id="desc">Chữ B trắng trên nền xanh đại dương bo tròn.</desc>
+  <defs>
+    <radialGradient id="ocean" cx="46%" cy="32%" r="78%">
+      <stop offset="0" stop-color="#1258ff"/>
+      <stop offset="0.55" stop-color="#0635b8"/>
+      <stop offset="1" stop-color="#021a65"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#00113f" flood-opacity=".7"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="496" height="496" rx="88" fill="url(#ocean)" stroke="#1678ff" stroke-width="5"/>
+  <path filter="url(#shadow)" fill="#fff" d="M134 104h151c82 0 126 37 126 100 0 43-22 73-58 88 49 14 76 49 76 101 0 74-53 115-145 115H134V104zm98 78v79h47c29 0 43-13 43-39 0-27-15-40-45-40h-45zm0 153v91h53c36 0 54-15 54-45 0-31-19-46-57-46h-50z"/>
+</svg>
