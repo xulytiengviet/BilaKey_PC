@@ -69,3 +69,4 @@ func BenchmarkCapitalizerWordCycle(b *testing.B) {
 		_ = c.BeginWord()
 		c.ObserveDelimiter(".")
 	}
+}
