@@ -1,0 +1,31 @@
+BilaKey PC 2.0.0 — local release audit · 2026-07-30
+
+ORACLE
+{"version":"5.1.0-bilakey-core","audit":{"baseRows":758,"patch54Entries":324,"patch56Entries":12,"totalPatchEntries":336,"ambiguityGroups":56,"explicitCanonicalPolicies":56,"criticalCollisionGroups":5,"maxCandidateCount":2,"silentReverseOverwrite":0},"selfTest":{"ok":true,"tests":33,"failures":[]}}
+
+INDEPENDENT AUDIT
+version=5.1.0-bilakey-core base=758 patches=336 codes=810 ambiguities=56 policies=56
+policy_coverage=56/56 silent_reverse_overwrite=0 PASS
+rows=56 critical=5 canonical=51 explicit_policy=56 PASS
+
+GO QUALITY
+- gofmt: PASS
+- go test ./... -count=1: PASS
+- go test -race ./... -count=1: PASS
+- go vet ./...: PASS
+- Windows cross-build amd64/386/arm64: PASS
+
+BENCHMARK — linux/amd64, AMD EPYC 9V74
+BenchmarkEngineCVNSS-5    1094 ns/op    360 B/op    11 allocs/op
+BenchmarkEngineTelex-5     514.9 ns/op   64 B/op     4 allocs/op
+BenchmarkEngineVNI-5       513.3 ns/op   56 B/op     3 allocs/op
+
+ARTIFACTS
+2293248  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe
+2362368  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe
+2227200  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe
+ 699136  dist/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe.xz
+ 818660  dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe.xz
+ 781996  dist/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe.xz
+
+This audit verifies source and cross-build gates. It does not claim that the Windows real-world application matrix or Authenticode gates have passed.

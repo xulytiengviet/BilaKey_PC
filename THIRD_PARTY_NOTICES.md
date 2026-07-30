@@ -13,9 +13,10 @@ Toàn văn giấy phép được sao chép tại `docs/BAMBOO_CORE_MIT_LICENSE.t
 
 ## 2. Dự án CVNSS4.0
 
-Bảng quy tắc và candidate graph trong `internal/core/cvnss_generated.go` được sinh từ oracle:
+Bảng quy tắc và candidate graph trong `internal/core/cvnss_generated_*.go` được sinh từ oracle:
 
-`reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js`
+- dữ liệu mô-đun: `reference/cvnss/`;
+- wrapper tương thích: `reference/cvnss4_0_converter.pro.v5_1.bilakey_core.js`.
 
 BilaKey 2.0 bổ sung lớp resolver nhận biết âm đầu và các hồi quy dành cho hoạt động bộ gõ. Dữ liệu giữ 758 dòng gốc, 336 patch entries, 56 nhóm nhập nhằng, 56 policy canonical và 5 critical collision.
 

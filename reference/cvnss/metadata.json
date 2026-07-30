@@ -1,0 +1,1 @@
+{"version":"5.1.0-bilakey-core","sourceVersion":"4.1.0-pro","ruleset":"CVNSS4.0 official formula + 56-rime patch + audit-safe candidate graph + onset-aware BilaKey resolver","baseRows":758,"patchEntries":336,"ambiguityGroups":56,"canonicalPolicies":56,"criticalCollisionGroups":5}

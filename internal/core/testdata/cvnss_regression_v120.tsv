@@ -1,0 +1,15 @@
+# input	expected	reason
+ses	sẽ	critical es collision: ẽ vs oec
+Ses	Sẽ	case-preserving critical collision
+hed	hề	critical ed collision: ề vs oet
+ned	nề	critical ed collision with onset n
+tod	tồ	critical od collision: ồ vs oat
+mof	mộ	critical of collision: ộ vs oap
+cos	cõ	critical os collision: õ vs oac
+toiy	tôi	canonical CVNSS4.0
+iwy	yêu	canonical i/y reverse rule
+vidf	việt	54-rime reverse preferred
+ily	yên	no-onset i/y canonicalization
+idb	yết	54-rime yết canonicalization
+tizb	tiếng	54-rime initial context
+wily	nghiên	initial restoration w -> ngh before iê
