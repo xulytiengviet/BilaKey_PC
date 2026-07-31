@@ -1,4 +1,4 @@
-name: BilaKey 2.0 CI
+name: BilaKey 2.5 CI
 
 on:
   push:
@@ -78,9 +78,9 @@ jobs:
           CGO_ENABLED: "0"
         run: |
           mkdir -p dist
-          go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o dist/BilaKey-PC-2.0.0-CVNSS-Core-${{ matrix.suffix }}.exe ./cmd/bilakey
+          go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o dist/BilaKey-PC-2.5.0-CVNSS-Core-${{ matrix.suffix }}.exe ./cmd/bilakey
       - uses: actions/upload-artifact@v4
         with:
-          name: BilaKey-PC-2.0.0-${{ matrix.suffix }}
+          name: BilaKey-PC-2.5.0-${{ matrix.suffix }}
           path: dist/*.exe
           if-no-files-found: error
