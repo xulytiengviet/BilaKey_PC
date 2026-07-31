@@ -6,6 +6,11 @@ on:
     paths:
       - "tools/python/upgrade_bilakey_2_5_5.py"
       - ".github/workflows/apply-upgrade-2.5.5.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "tools/python/upgrade_bilakey_2_5_5.py"
+      - ".github/workflows/apply-upgrade-2.5.5.yml"
   workflow_dispatch:
 
 permissions:
