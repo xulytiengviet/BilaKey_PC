@@ -6,6 +6,11 @@ on:
     paths:
       - "tools/python/upgrade_bilakey_2_5.py"
       - ".github/workflows/apply-upgrade-2.5.0.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "tools/python/upgrade_bilakey_2_5.py"
+      - ".github/workflows/apply-upgrade-2.5.0.yml"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +22,7 @@ concurrency:
 
 jobs:
   upgrade:
+    if: github.repository == 'xulytiengviet/BilaKey_PC'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
