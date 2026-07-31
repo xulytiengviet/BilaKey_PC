@@ -17,8 +17,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: apply-bilakey-2.5.0-upgrade
-  cancel-in-progress: false
+  group: apply-bilakey-2.5.0-upgrade-v2
+  cancel-in-progress: true
 
 jobs:
   upgrade:
