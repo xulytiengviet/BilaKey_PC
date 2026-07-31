@@ -110,7 +110,7 @@ func (a *App) themeControlColor(msg uint32, hdc, child uintptr) uintptr {
 }
 
 func (a *App) isMethodTab(id uint32) bool {
-	return id == idTabCVNSS || id == idTabTelex || id == idTabVNI
+	return id == idTabCVNSS || id == idTabVNITelex
 }
 
 func (a *App) methodTabActive(id uint32) bool {
@@ -118,10 +118,8 @@ func (a *App) methodTabActive(id uint32) bool {
 	switch id {
 	case idTabCVNSS:
 		return method == "CVNSS4.0"
-	case idTabTelex:
-		return method == "Telex"
-	case idTabVNI:
-		return method == "VNI"
+	case idTabVNITelex:
+		return method == "VNI/Telex"
 	}
 	return false
 }

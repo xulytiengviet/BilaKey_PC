@@ -3,9 +3,10 @@ package core
 import "strings"
 
 const (
-	MethodCVNSS = "CVNSS4.0"
-	MethodTelex = "Telex"
-	MethodVNI   = "VNI"
+	MethodCVNSS    = "CVNSS4.0"
+	MethodVNITelex = "VNI/Telex"
+	MethodTelex    = "Telex" // legacy configuration alias
+	MethodVNI      = "VNI"   // legacy configuration alias
 )
 
 type Options struct {
@@ -20,17 +21,26 @@ type Engine struct {
 	Options Options
 }
 
+// NormalizeMethod migrates legacy Telex/VNI selections to the unified mode.
+func NormalizeMethod(method string) string {
+	key := strings.ToUpper(strings.ReplaceAll(strings.TrimSpace(method), " ", ""))
+	switch key {
+	case "VNI/TELEX", "TELEX/VNI", "VNI", "TELEX", "VNITELEX", "TELEXVNI":
+		return MethodVNITelex
+	default:
+		return MethodCVNSS
+	}
+}
+
 func New(method string, opts Options) *Engine {
-	return &Engine{Method: method, Options: opts}
+	return &Engine{Method: NormalizeMethod(method), Options: opts}
 }
 
 func (e *Engine) Transform(raw string) string {
 	var out string
-	switch strings.ToUpper(e.Method) {
-	case strings.ToUpper(MethodTelex):
-		out = transformTelex(raw, e.Options.OldToneStyle)
-	case strings.ToUpper(MethodVNI):
-		out = transformVNI(raw, e.Options.OldToneStyle)
+	switch NormalizeMethod(e.Method) {
+	case MethodVNITelex:
+		out = transformVNITelex(raw, e.Options.OldToneStyle)
 	default:
 		out = DecodeCVNSS(raw)
 	}

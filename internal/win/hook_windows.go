@@ -155,8 +155,8 @@ func (a *App) handleKeydown(vk uint32) bool {
 		a.resetComposition()
 		return false
 	}
-	if cfg.InputMethod != core.MethodVNI && unicode.IsDigit(ch) {
-		// Numbers are literal delimiters for Telex/CVNSS; do not consume them.
+	if cfg.InputMethod != core.MethodVNITelex && unicode.IsDigit(ch) {
+		// Numbers are literal delimiters for CVNSS; VNI/Telex consumes them as VNI control keys.
 		a.resetComposition()
 		return false
 	}

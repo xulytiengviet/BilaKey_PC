@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	method := flag.String("method", "cvnss", "cvnss, telex hoặc vni")
+	method := flag.String("method", "cvnss", "cvnss hoặc vni-telex")
 	inspect := flag.Bool("inspect", false, "in chi tiết candidate graph CVNSS dạng JSON")
 	audit := flag.Bool("audit", false, "in audit lõi CVNSS dạng JSON")
 	text := flag.Bool("text", false, "chuyển toàn bộ văn bản, giữ nguyên nội dung hỗn hợp")
@@ -23,7 +23,7 @@ func main() {
 	}
 	input := strings.Join(flag.Args(), " ")
 	if input == "" {
-		fmt.Fprintln(os.Stderr, "usage: bilakey-cli [-method cvnss|telex|vni] [-text|-inspect|-audit] <input>")
+		fmt.Fprintln(os.Stderr, "usage: bilakey-cli [-method cvnss|vni-telex] [-text|-inspect|-audit] <input>")
 		os.Exit(2)
 	}
 	if *inspect {
@@ -31,11 +31,9 @@ func main() {
 		return
 	}
 	selected := core.MethodCVNSS
-	switch strings.ToLower(*method) {
-	case "telex":
-		selected = core.MethodTelex
-	case "vni":
-		selected = core.MethodVNI
+	switch strings.ToLower(strings.TrimSpace(*method)) {
+	case "vni-telex", "vni/telex", "telex/vni", "vni", "telex":
+		selected = core.MethodVNITelex
 	case "cvnss", "cvnss4.0":
 	default:
 		fmt.Fprintf(os.Stderr, "method không hợp lệ: %s\n", *method)

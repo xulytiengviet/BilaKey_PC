@@ -129,3 +129,30 @@ func TestCVNSSAuditAPI(t *testing.T) {
 		t.Fatalf("unexpected audit: %+v", a)
 	}
 }
+
+func TestVNITelexUnifiedMode(t *testing.T) {
+	e := New(MethodVNITelex, Options{})
+	cases := map[string]string{
+		"tieengs": "tiếng", // Telex
+		"tieng61": "tiếng", // VNI
+		"ddoongf": "đồng",  // Telex
+		"d9ong62": "đồng",  // VNI
+		"d9oongf": "đồng",  // VNI đ + Telex ô/dấu
+		"ddong62": "đồng",  // Telex đ + VNI ô/dấu
+		"vieet5":  "việt",  // Telex ê + VNI dấu nặng
+		"2026":    "2026",
+	}
+	for in, want := range cases {
+		if got := e.Transform(in); got != want {
+			t.Errorf("VNI/Telex %q: got %q want %q", in, got, want)
+		}
+	}
+}
+
+func TestLegacyMethodsNormalizeToUnifiedMode(t *testing.T) {
+	for _, method := range []string{"Telex", "VNI", "Telex/VNI", "VNI/Telex", "vni telex"} {
+		if got := New(method, Options{}).Method; got != MethodVNITelex {
+			t.Errorf("Normalize %q=%q want %q", method, got, MethodVNITelex)
+		}
+	}
+}

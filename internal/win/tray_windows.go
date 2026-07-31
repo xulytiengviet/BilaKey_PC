@@ -16,12 +16,11 @@ const (
 	hotkeyActionMessage = WM_APP + 3
 	trayIconID          = 1
 
-	trayCmdToggle = 9001
-	trayCmdShow   = 9002
-	trayCmdCVNSS  = 9003
-	trayCmdTelex  = 9004
-	trayCmdVNI    = 9005
-	trayCmdExit   = 9006
+	trayCmdToggle   = 9001
+	trayCmdShow     = 9002
+	trayCmdCVNSS    = 9003
+	trayCmdVNITelex = 9004
+	trayCmdExit     = 9005
 )
 
 func (a *App) initIcons() {
@@ -175,8 +174,7 @@ func (a *App) showTrayMenu() {
 	appendMenuText(menu, MF_STRING, trayCmdShow, "Mở BilaKey PC")
 	procAppendMenuW.Call(menu, MF_SEPARATOR, 0, 0)
 	appendMenuChecked(menu, trayCmdCVNSS, "CVNSS4.0 · Lõi", cfg.InputMethod == "CVNSS4.0")
-	appendMenuChecked(menu, trayCmdTelex, "Telex · tương thích", cfg.InputMethod == "Telex")
-	appendMenuChecked(menu, trayCmdVNI, "VNI · tương thích", cfg.InputMethod == "VNI")
+	appendMenuChecked(menu, trayCmdVNITelex, "VNI/Telex · tự nhận dạng", cfg.InputMethod == "VNI/Telex")
 	procAppendMenuW.Call(menu, MF_SEPARATOR, 0, 0)
 	appendMenuText(menu, MF_STRING, trayCmdExit, "Thoát")
 
@@ -194,11 +192,8 @@ func (a *App) showTrayMenu() {
 	case trayCmdCVNSS:
 		a.updateConfig(func(c *settings.Config) { c.InputMethod = "CVNSS4.0" })
 		a.syncMethodCombo()
-	case trayCmdTelex:
-		a.updateConfig(func(c *settings.Config) { c.InputMethod = "Telex" })
-		a.syncMethodCombo()
-	case trayCmdVNI:
-		a.updateConfig(func(c *settings.Config) { c.InputMethod = "VNI" })
+	case trayCmdVNITelex:
+		a.updateConfig(func(c *settings.Config) { c.InputMethod = "VNI/Telex" })
 		a.syncMethodCombo()
 	case trayCmdExit:
 		a.exitApp()
