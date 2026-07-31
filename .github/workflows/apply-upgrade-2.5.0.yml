@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: apply-bilakey-2.5.0-upgrade-v2
+  group: apply-bilakey-2.5.0-upgrade-v3
   cancel-in-progress: true
 
 jobs:
@@ -57,6 +57,7 @@ jobs:
       - name: Keep workflow migration outside the bot commit
         run: |
           git restore .github/workflows
+          git clean -fd .github/workflows
           git restore tools/python/upgrade_bilakey_2_5.py
       - name: Commit upgraded source
         run: |
