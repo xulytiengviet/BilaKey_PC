@@ -1,5 +1,20 @@
 # 📝 Changelog
 
+## 2.5.0 — Unified VNI/Telex Edition · 2026-07-31
+
+### Hai kiểu gõ rõ ràng
+
+- BilaKey giờ chỉ hiển thị **CVNSS4.0** và **VNI/Telex**.
+- Hợp nhất Telex và VNI vào một engine tự nhận dạng; người dùng có thể đổi quy ước giữa từng từ mà không đổi chế độ.
+- Hỗ trợ kết hợp phím tạo chữ của Telex với phím dấu VNI, hoặc ngược lại, trong cùng một từ.
+- Tự động chuyển cấu hình cũ `Telex`, `VNI` và `Telex/VNI` sang `VNI/Telex`.
+- Rút gọn hotkey: `Ctrl+Shift+1` cho CVNSS4.0, `Ctrl+Shift+2` cho VNI/Telex; `Ctrl+Shift+3` không còn bị chiếm.
+
+### Phát hành
+
+- Đồng bộ phiên bản, tên EXE, ZIP, release notes, CI và bảng SHA-256 lên 2.5.0.
+- Duy trì ba bản Windows x64, x86 và ARM64 cùng gói ZIP đầy đủ.
+
 ## 2.0.0 — CVNSS Core Edition · 2026-07-30
 
 ### CVNSS4.0 trở thành lõi

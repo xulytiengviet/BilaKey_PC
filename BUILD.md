@@ -1,4 +1,4 @@
-# Build BilaKey PC 2.0.0
+# Build BilaKey PC 2.5.0
 
 ## Build đầy đủ có audit
 
@@ -14,7 +14,7 @@ Toolchain tối thiểu: Go 1.23+, Node.js 22+, Python 3.12+, g++ 13+ và xz. B�
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 \
 go build -buildvcs=false -trimpath \
   -ldflags='-s -w -H windowsgui -buildid=' \
-  -o dist/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe ./cmd/bilakey
+  -o dist/BilaKey-PC-2.5.0-CVNSS-Core-x64.exe ./cmd/bilakey
 ```
 
 Không dùng `-gcflags=all=-B`: cờ đó loại bỏ bounds-check và không phù hợp với bản phát hành ưu tiên an toàn.

@@ -6,8 +6,7 @@ const (
 	None Action = iota
 	ToggleVietnamese
 	SelectCVNSS
-	SelectTelex
-	SelectVNI
+	SelectVNITelex
 	CycleCandidate
 )
 
@@ -23,9 +22,7 @@ func Resolve(vk uint32, ctrl, shift, alt, win bool) Action {
 	case '1':
 		return SelectCVNSS
 	case '2':
-		return SelectTelex
-	case '3':
-		return SelectVNI
+		return SelectVNITelex
 	case '0':
 		return CycleCandidate
 	default:

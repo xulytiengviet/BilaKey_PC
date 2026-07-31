@@ -28,7 +28,15 @@ func TestOpenMigratesMissingSafetyField(t *testing.T) {
 		t.Fatal(err)
 	}
 	cfg := store.Get()
-	if cfg.InputMethod != "Telex" || !cfg.PauseInPasswordFields {
+	if cfg.InputMethod != "VNI/Telex" || !cfg.PauseInPasswordFields {
 		t.Fatalf("migration lost values/defaults: %+v", cfg)
+	}
+}
+
+func TestNormalizeLegacyVNI(t *testing.T) {
+	for _, method := range []string{"Telex", "VNI", "Telex/VNI", "VNI/Telex"} {
+		if got := normalizeInputMethod(method); got != "VNI/Telex" {
+			t.Errorf("normalizeInputMethod(%q)=%q", method, got)
+		}
 	}
 }

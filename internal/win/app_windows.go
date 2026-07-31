@@ -249,16 +249,14 @@ func (a *App) refreshMainStatus() {
 		state = "ĐANG TẮT"
 	}
 	methodRole := "CVNSS4.0 CORE"
-	if cfg.InputMethod == core.MethodTelex {
-		methodRole = "TELEX ADAPTER"
-	} else if cfg.InputMethod == core.MethodVNI {
-		methodRole = "VNI ADAPTER"
+	if cfg.InputMethod == core.MethodVNITelex {
+		methodRole = "VNI/TELEX · TỰ NHẬN DẠNG"
 	}
 	if hwnd := a.controls[idStatus]; hwnd != 0 {
 		setWindowText(hwnd, fmt.Sprintf("  %s  •  %s  •  Unicode  •  Ctrl+Shift+Space: bật/tắt", state, methodRole))
 	}
 	if hwnd := a.controls[idCapsStatus]; hwnd != 0 {
-		setWindowText(hwnd, "Ctrl+Shift+1: CVNSS Core  •  2/3: adapter  •  Ctrl+Shift+0: ứng viên")
+		setWindowText(hwnd, "Ctrl+Shift+1: CVNSS4.0  •  Ctrl+Shift+2: VNI/Telex  •  Ctrl+Shift+0: ứng viên")
 	}
 	if hwnd := a.controls[idToggle]; hwnd != 0 {
 		if cfg.Enabled {
@@ -278,9 +276,9 @@ func (a *App) configFolder() string {
 
 func (a *App) showHelp() {
 	text := "BilaKey PC " + settings.AppVersion + " · CVNSS Core Edition\r\n\r\n" +
-		"1. CVNSS4.0 là lõi mặc định; Telex và VNI là lớp tương thích tùy chọn.\r\n" +
-		"2. Nhấn Tab khi cửa sổ BilaKey đang mở để chuyển giữa lõi và hai adapter.\r\n" +
-		"3. Ctrl+Shift+Space bật/tắt; Ctrl+Shift+1/2/3 chọn CVNSS/Telex/VNI.\r\n" +
+		"1. BilaKey chỉ có hai kiểu gõ: CVNSS4.0 và VNI/Telex.\r\n" +
+		"2. VNI/Telex tự nhận cả phím chữ Telex và phím số VNI; có thể đổi cách gõ giữa từng từ.\r\n" +
+		"3. Ctrl+Shift+Space bật/tắt; Ctrl+Shift+1 chọn CVNSS4.0; Ctrl+Shift+2 chọn VNI/Telex.\r\n" +
 		"4. Ctrl+Shift+0 đổi ứng viên khi mã CVNSS có nhiều cách giải.\r\n" +
 		"5. Đầu ra luôn là Unicode; chữ đầu tiên và chữ sau . ! ? tự động viết hoa.\r\n" +
 		"6. Shift×1 viết hoa một chữ; Shift×2 khóa viết hoa liên tục.\r\n" +
@@ -294,7 +292,7 @@ func (a *App) showAbout() {
 	text := "BilaKey PC " + settings.AppVersion + "\r\n" +
 		"CVNSS Core Edition\r\n\r\n" +
 		"Lõi nhập liệu: CVNSS4.0\r\n" +
-		"Adapter tương thích: Telex / VNI\r\n" +
+		"Kiểu gõ hợp nhất: VNI/Telex tự nhận dạng\r\n" +
 		"Rule oracle: CVNSS4.0 " + core.CVNSSRuleVersion + "\r\n" +
 		"Phát triển: Long Ngo, 2026\r\n" +
 		"Hỗ trợ CVNSS4.0: NNC Trần Tư Bình và cộng đồng.\r\n\r\n" +

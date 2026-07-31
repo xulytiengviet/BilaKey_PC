@@ -19,19 +19,18 @@ const (
 )
 
 const (
-	idToggle     = 101
-	idExit       = 102
-	idExpand     = 103
-	idHelp       = 104
-	idAbout      = 105
-	idSettings   = 106
-	idStatus     = 107
-	idCapsStatus = 108
-	idHeader     = 109
-	idSubtle     = 110
-	idTabCVNSS   = 111
-	idTabTelex   = 112
-	idTabVNI     = 113
+	idToggle      = 101
+	idExit        = 102
+	idExpand      = 103
+	idHelp        = 104
+	idAbout       = 105
+	idSettings    = 106
+	idStatus      = 107
+	idCapsStatus  = 108
+	idHeader      = 109
+	idSubtle      = 110
+	idTabCVNSS    = 111
+	idTabVNITelex = 112
 
 	idOptFreeTone         = 201
 	idOptOldTone          = 202
@@ -151,10 +150,9 @@ func mainWndProc(hwnd uintptr, msg uint32, wParam, lParam uintptr) uintptr {
 		createControl(hwnd, "STATIC", "BilaKey PC", 0, 88, 18, 220, 28, idHeader)
 		createControl(hwnd, "STATIC", "CVNSS4.0 Core · Unicode · riêng tư · kiểm toán được", 0, 88, 48, 440, 22, idSubtle)
 
-		createControl(hwnd, "STATIC", "Lõi nhập liệu và adapter tương thích", 0, 24, 88, 310, 22, idSubtle)
-		a.controls[idTabCVNSS] = createDOSButton(hwnd, "CVNSS4.0 · LÕI", 24, 114, 290, 42, idTabCVNSS)
-		a.controls[idTabTelex] = createDOSButton(hwnd, "TELEX", 324, 114, 110, 42, idTabTelex)
-		a.controls[idTabVNI] = createDOSButton(hwnd, "VNI", 444, 114, 110, 42, idTabVNI)
+		createControl(hwnd, "STATIC", "Hai kiểu gõ: CVNSS4.0 và VNI/Telex tự nhận dạng", 0, 24, 88, 510, 22, idSubtle)
+		a.controls[idTabCVNSS] = createDOSButton(hwnd, "CVNSS4.0 · LÕI", 24, 114, 255, 42, idTabCVNSS)
+		a.controls[idTabVNITelex] = createDOSButton(hwnd, "VNI / TELEX · TỰ ĐỘNG", 299, 114, 255, 42, idTabVNITelex)
 
 		status := createControl(hwnd, "STATIC", "", WS_BORDER, 24, 176, 530, 34, idStatus)
 		a.controls[idStatus] = status
@@ -185,10 +183,8 @@ func mainWndProc(hwnd uintptr, msg uint32, wParam, lParam uintptr) uintptr {
 			switch id {
 			case idTabCVNSS:
 				a.selectInputMethod(core.MethodCVNSS)
-			case idTabTelex:
-				a.selectInputMethod(core.MethodTelex)
-			case idTabVNI:
-				a.selectInputMethod(core.MethodVNI)
+			case idTabVNITelex:
+				a.selectInputMethod(core.MethodVNITelex)
 			case idToggle:
 				a.updateConfig(func(c *settings.Config) { c.Enabled = !c.Enabled })
 			case idExit:
@@ -206,7 +202,7 @@ func mainWndProc(hwnd uintptr, msg uint32, wParam, lParam uintptr) uintptr {
 		}
 
 	case WM_KEYDOWN:
-		// Plain Tab cycles the three tabs only while the BilaKey window is active.
+		// Plain Tab toggles the two tabs only while the BilaKey window is active.
 		// Global switching uses structured Ctrl+Shift shortcuts; Tab/Ctrl+Tab in
 		// editors and forms is never stolen.
 		if uint32(wParam) == VK_TAB {
@@ -259,22 +255,17 @@ func (a *App) selectInputMethod(method string) {
 }
 
 func (a *App) cycleInputMethod() {
-	method := a.runtimeConfig().InputMethod
-	switch method {
-	case core.MethodCVNSS:
-		method = core.MethodTelex
-	case core.MethodTelex:
-		method = core.MethodVNI
-	default:
-		method = core.MethodCVNSS
+	method := core.MethodCVNSS
+	if a.runtimeConfig().InputMethod == core.MethodCVNSS {
+		method = core.MethodVNITelex
 	}
 	a.selectInputMethod(method)
 }
 
 // Kept under the historical name to minimize call-site churn. The combo box
-// was replaced by three direct, owner-drawn method tabs.
+// was replaced by two direct, owner-drawn method tabs.
 func (a *App) syncMethodCombo() {
-	for _, id := range []int{idTabCVNSS, idTabTelex, idTabVNI} {
+	for _, id := range []int{idTabCVNSS, idTabVNITelex} {
 		if hwnd := a.controls[id]; hwnd != 0 {
 			procInvalidateRect.Call(hwnd, 0, 1)
 			procUpdateWindow.Call(hwnd)
@@ -288,10 +279,8 @@ func (a *App) applyHotkeyAction(action hotkey.Action) {
 		a.updateConfig(func(c *settings.Config) { c.Enabled = !c.Enabled })
 	case hotkey.SelectCVNSS:
 		a.selectInputMethod(core.MethodCVNSS)
-	case hotkey.SelectTelex:
-		a.selectInputMethod(core.MethodTelex)
-	case hotkey.SelectVNI:
-		a.selectInputMethod(core.MethodVNI)
+	case hotkey.SelectVNITelex:
+		a.selectInputMethod(core.MethodVNITelex)
 	case hotkey.CycleCandidate:
 		a.cycleCVNSSCandidate()
 	}

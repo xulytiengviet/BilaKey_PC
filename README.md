@@ -1,37 +1,62 @@
 <div align="center">
   <img src="assets/brand/bilakey-logo.svg" alt="Logo BilaKey — chữ B trắng trên nền xanh đại dương" width="168" />
 
-# 🌊 BilaKey PC 2.0.0
+# 🌊 BilaKey PC 2.5.0
 
-### Bộ gõ Windows lấy **CVNSS4.0 làm lõi**, không chỉ là một tùy chọn
+### Bộ gõ Windows chỉ còn **2 kiểu gõ: CVNSS4.0 và VNI/Telex**
 
-<a href="https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe">
-  <img src="https://img.shields.io/badge/T%E1%BA%A2I_NGAY-Windows_x64-0756d8?style=for-the-badge&logo=windows&logoColor=white" alt="Tải ngay BilaKey PC 2.0.0 cho Windows x64" />
+<a href="https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-CVNSS-Core-x64.exe">
+  <img src="https://img.shields.io/badge/T%E1%BA%A2I_NGAY-Windows_x64-0756d8?style=for-the-badge&logo=windows&logoColor=white" alt="Tải ngay BilaKey PC 2.5.0 cho Windows x64" />
 </a>
 
-**Máy Intel/AMD Windows 64-bit: bấm nút trên để tải `.exe` và dùng ngay — không cần cài đặt.**
+**Bấm nút trên để tải `.exe` và chạy ngay — portable, không cần cài đặt.**
 
-[![ARM64](https://img.shields.io/badge/T%E1%BA%A3i-ARM64%20%7C%20Snapdragon-173ea5?style=flat-square&logo=windows)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe)
-[![x86](https://img.shields.io/badge/T%E1%BA%A3i-Windows%2032--bit-3158a8?style=flat-square&logo=windows)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe)
-[![ZIP](https://img.shields.io/badge/T%E1%BA%A3i-G%C3%B3i%20%C4%91%E1%BA%A7y%20%C4%91%E1%BB%A7%20ZIP-5427c7?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-Windows.zip)
-[![Release](https://img.shields.io/badge/Xem-Release%202.0.0-00a86b?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/tag/2.0.0)
+[![ARM64](https://img.shields.io/badge/T%E1%BA%A3i-ARM64%20%7C%20Snapdragon-173ea5?style=flat-square&logo=windows)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe)
+[![x86](https://img.shields.io/badge/T%E1%BA%A3i-Windows%2032--bit-3158a8?style=flat-square&logo=windows)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-CVNSS-Core-x86.exe)
+[![ZIP](https://img.shields.io/badge/T%E1%BA%A3i-G%C3%B3i%20Windows%20%C4%91%E1%BA%A7y%20%C4%91%E1%BB%A7-5427c7?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-Windows.zip)
+[![SHA](https://img.shields.io/badge/Ki%E1%BB%83m_tra-SHA--256-6b7280?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/SHA256SUMS-2.5.0.txt)
+[![Release](https://img.shields.io/badge/Xem-Release%202.5.0-00a86b?style=flat-square&logo=github)](https://github.com/xulytiengviet/BilaKey_PC/releases/tag/2.5.0)
 
-[![Version](https://img.shields.io/badge/version-2.0.0-0756d8?style=for-the-badge)](VERSION)
+[![Version](https://img.shields.io/badge/version-2.5.0-0756d8?style=for-the-badge)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-00a86b?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Windows-x86%20%7C%20x64%20%7C%20ARM64-0078d4?style=for-the-badge&logo=windows)](BUILD.md)
-[![Go](https://img.shields.io/badge/Go-1.23%2B-00add8?style=for-the-badge&logo=go)](go.mod)
 [![CVNSS4.0](https://img.shields.io/badge/CVNSS4.0-Core-173ea5?style=for-the-badge)](docs/CVNSS_CORE_SPEC.md)
 [![Privacy](https://img.shields.io/badge/telemetry-none-5427c7?style=for-the-badge)](SECURITY.md)
 
-**Nhanh · Nhẹ · Unicode · Offline · Kiểm toán được · Mã nguồn mở**
+**Nhanh · Nhẹ · Unicode · Offline · Kiểm toán được · Mã nguồn mở MIT**
 
 </div>
 
 ---
 
-## ✨ BilaKey 2.0.0 là gì?
+## ✨ Thay đổi quan trọng trong 2.5.0
 
-BilaKey PC là bộ gõ tiếng Việt Unicode cho Windows, được thiết kế lại theo kiến trúc **CVNSS4.0 Core**:
+BilaKey không còn bắt người dùng chọn riêng Telex hoặc VNI. Giao diện và lõi nhập liệu chỉ còn hai kiểu:
+
+| Kiểu gõ | Vai trò |
+|---|---|
+| 🧠 **CVNSS4.0** | Lõi trung tâm, chế độ mặc định của BilaKey |
+| 🔁 **VNI/Telex** | Engine hợp nhất tự nhận cả phím chữ Telex và phím số VNI |
+
+Khi chọn **VNI/Telex**, người dùng có thể:
+
+- gõ hoàn toàn theo Telex;
+- gõ hoàn toàn theo VNI;
+- đổi từ Telex sang VNI giữa các từ mà không chuyển chế độ;
+- kết hợp phím tạo chữ của một kiểu với phím đặt dấu của kiểu còn lại trong cùng một từ.
+
+```text
+Telex       tieengs   → tiếng
+VNI         tieng61   → tiếng
+Telex       ddoongf   → đồng
+VNI         d9ong62   → đồng
+Kết hợp     vieet5    → việt
+Kết hợp     d9oongf   → đồng
+```
+
+Cấu hình cũ `Telex`, `VNI` hoặc `Telex/VNI` được chuyển tự động sang `VNI/Telex`; người dùng không cần xóa cấu hình.
+
+## 🏗️ Kiến trúc nhập liệu 2.5
 
 ```text
 Phím người dùng
@@ -39,74 +64,63 @@ Phím người dùng
       ▼
 Composition State Machine
       │
-      ▼
-CVNSS4.0 Core Resolver
-  ├─ bảng quy tắc được sinh từ oracle
-  ├─ candidate graph 56 nhóm nhập nhằng
-  ├─ resolver nhận biết âm đầu
-  ├─ kiểm tra chính tả và văn bản hỗn hợp
-  └─ audit / inspect / regression / fuzz
+      ├───────────── CVNSS4.0 Core
+      │                ├─ candidate graph 56 nhóm
+      │                ├─ resolver nhận biết âm đầu
+      │                └─ audit / regression / fuzz
       │
-      ├──────────────► Unicode tiếng Việt
-      │
-      ├─ Telex adapter ─┐
-      └─ VNI adapter ───┴─ lớp tương thích, không thay thế lõi
+      └───────────── VNI/Telex Unified Engine
+                       ├─ phím dấu Telex: s f r x j z
+                       ├─ phím tạo chữ Telex: aa aw ee oo ow uw dd
+                       ├─ phím dấu VNI: 0 1 2 3 4 5
+                       ├─ phím tạo chữ VNI: 6 7 8 9
+                       └─ một đầu ra Unicode tiếng Việt
 ```
 
-Trong phiên bản 2.0.0, **CVNSS4.0 là chế độ mặc định, trung tâm của giao diện, cấu hình, kiểm thử và quy trình phát hành**. Telex và VNI vẫn có mặt để hỗ trợ chuyển tiếp cho người dùng phổ thông, nhưng được xác định rõ là các adapter tương thích.
-
-## 🚀 Điểm mới nổi bật
-
-| Năng lực | BilaKey 2.0.0 |
-|---|---|
-| 🧠 **CVNSS4.0 Core** | Lõi mặc định; Telex/VNI là adapter |
-| 🔎 **Candidate graph** | Giữ đủ 56 nhóm nhập nhằng, không ghi đè reverse-map âm thầm |
-| 🧭 **Resolver theo âm đầu** | Chọn ứng viên dựa trên cả onset + rime + chính tả |
-| ✅ **Sửa lỗi họ `qu + uy`** | `qyl/qyz/qys/qyj/qyr → quỳ/quỷ/quỹ/quý/quỵ` |
-| 🛡️ **Mixed-text safe** | Không tự ý làm hỏng `OpenAI`, `GitHub`, URL và định danh mã nguồn khi bật kiểm tra chính tả |
-| ⚡ **Streaming composition** | Cập nhật từ sau từng phím, Backspace phục hồi và đổi ứng viên tại chỗ |
-| 🧪 **Kiểm thử nhiều lớp** | Oracle JS · Python audit · C++ checker · Go unit/regression/race/fuzz |
-| 🧰 **CLI kiểm toán** | Decode, inspect candidate graph và audit không cần giao diện Windows |
-| 🔒 **Riêng tư** | Không telemetry, không tải quy tắc lúc chạy, không phụ thuộc dịch vụ đám mây |
-| 🏗️ **Đa kiến trúc** | Cross-build Windows x86, x64 và ARM64 |
-
-## ⌨️ Ví dụ CVNSS4.0
-
-```text
-Input CVNSS     Unicode
-────────────    ─────────
-toiy            tôi
-iwy             yêu
-vidf            việt
-tizb            tiếng
-qyl             quỳ
-qyj             quý
-ses             sẽ
-```
-
-Với mã nhiều nghĩa, BilaKey lưu toàn bộ candidate graph và cho phép đổi ứng viên bằng `Ctrl+Shift+0`. Các ứng viên sai cấu trúc chính tả sau một âm đầu được hạ hạng hoặc loại khỏi vòng chọn thông thường, nhưng vẫn còn trong dữ liệu audit.
-
-## 📦 Tải về và chạy ngay
-
-### Bản khuyến nghị
-
-➡️ **[Tải BilaKey PC 2.0.0 cho Windows x64](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe)**
-
-Đây là bản dành cho phần lớn máy Windows Intel/AMD hiện nay. Sau khi tải, mở tệp `.exe` để chạy; BilaKey là ứng dụng portable, không cần cài đặt và không cần quyền Administrator.
+## 📦 Tải trực tiếp đã xác minh
 
 | Thiết bị | Liên kết tải trực tiếp |
 |---|---|
-| Intel/AMD Windows 64-bit — **khuyến nghị** | [BilaKey-PC-2.0.0-CVNSS-Core-x64.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x64.exe) |
-| Windows on ARM / Snapdragon | [BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-arm64.exe) |
-| Windows 32-bit cũ | [BilaKey-PC-2.0.0-CVNSS-Core-x86.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-CVNSS-Core-x86.exe) |
-| Gói đầy đủ ba kiến trúc | [BilaKey-PC-2.0.0-Windows.zip](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/BilaKey-PC-2.0.0-Windows.zip) |
-| SHA-256 | [SHA256SUMS-2.0.0.txt](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.0.0/SHA256SUMS-2.0.0.txt) |
+| **Windows x64 — khuyến nghị** | [BilaKey-PC-2.5.0-CVNSS-Core-x64.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-CVNSS-Core-x64.exe) |
+| **Windows ARM64 / Snapdragon** | [BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe) |
+| **Windows x86 32-bit** | [BilaKey-PC-2.5.0-CVNSS-Core-x86.exe](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-CVNSS-Core-x86.exe) |
+| **Gói đầy đủ Windows ZIP** | [BilaKey-PC-2.5.0-Windows.zip](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/BilaKey-PC-2.5.0-Windows.zip) |
+| **Bảng kiểm tra SHA-256** | [SHA256SUMS-2.5.0.txt](https://github.com/xulytiengviet/BilaKey_PC/releases/download/2.5.0/SHA256SUMS-2.5.0.txt) |
+| **Trang phát hành** | [Release BilaKey PC 2.5.0](https://github.com/xulytiengviet/BilaKey_PC/releases/tag/2.5.0) |
 
-> Bản portable 2.0.0 hiện chưa ký Authenticode, vì vậy Windows SmartScreen có thể cảnh báo ở lần chạy đầu. Chỉ tải từ repository/release chính thức và đối chiếu SHA-256 trước khi phổ biến diện rộng.
+Quy trình phát hành chỉ hoàn tất khi workflow xác minh đủ **ba tệp EXE, một gói ZIP và bảng checksum SHA-256**.
 
-### Build từ mã nguồn
+> Các tệp portable hiện chưa ký Authenticode. Windows SmartScreen có thể cảnh báo ở lần chạy đầu; chỉ tải từ repository/release chính thức và đối chiếu SHA-256.
 
-Yêu cầu: Go 1.23+, Node.js, Python 3, `g++` và `xz`.
+## 🎛️ Phím tắt
+
+| Phím | Tác vụ |
+|---|---|
+| `Ctrl+Shift+Space` | Bật/tắt BilaKey |
+| `Ctrl+Shift+1` | Chọn **CVNSS4.0** |
+| `Ctrl+Shift+2` | Chọn **VNI/Telex** |
+| `Ctrl+Shift+0` | Đổi ứng viên CVNSS đang nhập nhằng |
+| `Shift` một lần | Viết hoa một từ |
+| `Shift` hai lần | Bật/tắt BilaCaps |
+| `Backspace` sau delimiter | Quay lại từ vừa commit để sửa |
+
+`Ctrl+Shift+3`, `Ctrl+Tab`, Alt và phím Windows được trả cho ứng dụng đang dùng.
+
+## 🧰 CLI
+
+```bash
+# CVNSS4.0
+go run ./cmd/bilakey-cli -method cvnss qyl
+
+# VNI hoặc Telex đều dùng cùng một method
+go run ./cmd/bilakey-cli -method vni-telex tieengs
+go run ./cmd/bilakey-cli -method vni-telex tieng61
+
+# Audit CVNSS core
+go run ./cmd/bilakey-cli -audit
+```
+
+## 🔨 Build từ mã nguồn
 
 ```bash
 git clone https://github.com/xulytiengviet/BilaKey_PC.git
@@ -115,96 +129,31 @@ go test ./...
 GO_BIN=go scripts/build_release.sh
 ```
 
-Script phát hành sẽ kiểm tra oracle, sinh lại bảng Go, so sánh byte-for-byte, chạy audit độc lập, unit/race/vet/benchmark và cross-build ba kiến trúc.
-
-## 🎛️ Phím tắt
-
-| Phím | Tác vụ |
-|---|---|
-| `Ctrl+Shift+Space` | Bật/tắt BilaKey |
-| `Ctrl+Shift+1` | Chọn **CVNSS4.0 Core** |
-| `Ctrl+Shift+2` | Chọn Telex adapter |
-| `Ctrl+Shift+3` | Chọn VNI adapter |
-| `Ctrl+Shift+0` | Đổi ứng viên CVNSS đang nhập nhằng |
-| `Shift` một lần | Viết hoa một từ |
-| `Shift` hai lần | Bật/tắt BilaCaps |
-| `Backspace` sau delimiter | Quay lại từ vừa commit để sửa |
-
-`Ctrl+Tab` được trả hoàn toàn cho trình duyệt, IDE và trình soạn thảo.
-
-## 🧰 CLI dành cho kiểm thử và nghiên cứu
-
-```bash
-# Decode một mã CVNSS
-go run ./cmd/bilakey-cli qyl
-
-# Chuyển văn bản hỗn hợp an toàn
-go run ./cmd/bilakey-cli -text "qyl tizb vidf · OpenAI/GitHub"
-
-# Xem candidate graph và lý do xếp hạng
-go run ./cmd/bilakey-cli -inspect vidf
-
-# Xuất audit lõi
-go run ./cmd/bilakey-cli -audit
-```
-
-## 🏛️ Kiến trúc mã nguồn
-
-```text
-BilaKey_PC/
-├── cmd/
-│   ├── bilakey/          # Ứng dụng Win32 thường trú
-│   └── bilakey-cli/      # Decode, inspect và audit đa nền tảng
-├── internal/
-│   ├── core/             # CVNSS4.0 Core + Telex/VNI adapters
-│   ├── hotkey/           # Phân giải phím tắt không xung đột
-│   ├── macro/            # Gõ tắt
-│   ├── settings/         # Cấu hình atomic
-│   ├── typingstate/      # BilaCaps, sentence caps, rollback
-│   └── win/              # Win32 hook, tray, UI, Unicode sender
-├── reference/            # Oracle CVNSS và bản legacy để đối chiếu
-├── tools/                # Generator/audit Python, checker C++
-├── scripts/              # Build phát hành tái lập
-├── assets/brand/         # Logo chính thức
-└── docs/                 # Đặc tả, kiến trúc, release gates
-```
-
-Xem chi tiết tại [Kiến trúc 2.0](docs/ARCHITECTURE.md), [Đặc tả CVNSS Core](docs/CVNSS_CORE_SPEC.md) và [Cổng phát hành](docs/RELEASE_GATES.md).
+Yêu cầu: Go 1.23+, Node.js 22+, Python 3.12+, `g++` và `xz`.
 
 ## 🔐 An toàn và quyền riêng tư
 
-BilaKey không triển khai telemetry, quảng cáo, tài khoản người dùng hoặc truy cập mạng ở tầng ứng dụng. Quy tắc CVNSS được nhúng tĩnh; cấu hình được lưu trong thư mục người dùng và ghi theo cơ chế tệp tạm → đổi tên atomic.
+BilaKey không có telemetry, quảng cáo, tài khoản người dùng hoặc network runtime. Quy tắc được nhúng tĩnh; cấu hình lưu trong thư mục người dùng theo cơ chế ghi tệp tạm rồi đổi tên atomic.
 
-Cơ chế hiện tại sử dụng Win32 low-level keyboard hook + Unicode `SendInput`, với clipboard chỉ là fallback tùy chọn. Lộ trình TSF được giữ như một gate kiến trúc sau 2.0; xem [SECURITY.md](SECURITY.md) và [RELEASE_GATES.md](docs/RELEASE_GATES.md).
+## 📊 Trạng thái kiểm chứng
 
-## 📊 Trạng thái chất lượng
-
-| Gate nguồn 2.0.0 | Trạng thái |
+| Gate | Trạng thái |
 |---|---:|
-| Oracle self-test, gồm hồi quy `qu + uy` | PASS |
-| 758 dòng gốc · 336 patch · 56 policy | PASS |
-| Không silent reverse overwrite | PASS |
-| Go unit/regression | PASS |
-| Mixed-text safety | PASS |
-| Cross-platform CLI | PASS |
-| Windows x86/x64/ARM64 cross-build | PASS trong CI/build script |
-| Smoke-test 20 ứng dụng Windows thật | Cần pilot |
-| Authenticode | Cần chứng thư phát hành |
-
-Mã nguồn và kiến trúc đạt mục tiêu kỹ thuật khoảng **9,0/10**. Mốc **9,2/10 phát hành đại trà** chỉ được công bố sau khi hai gate cuối — Windows real-world matrix và Authenticode — hoàn tất; dự án không báo PASS giả.
+| CVNSS oracle, candidate graph và policy | PASS |
+| VNI/Telex: vectors Telex thuần | PASS |
+| VNI/Telex: vectors VNI thuần | PASS |
+| VNI/Telex: vectors kết hợp | PASS |
+| Di chuyển cấu hình Telex/VNI cũ | PASS |
+| Go unit/regression/race/vet/fuzz | PASS trong CI |
+| Windows x86/x64/ARM64 cross-build | PASS trong CI |
+| Release có 3 EXE + ZIP + SHA-256 | Bắt buộc trước khi workflow kết thúc |
+| Authenticode | Chờ chứng thư phát hành |
 
 ## 🤝 Ghi nhận và cộng đồng
 
 - **Phát triển và duy trì:** **Long Ngo**.
 - **Hỗ trợ nền tảng CVNSS4.0:** **NNC Trần Tư Bình**, thông qua dự án CVNSS4.0.
-- **Đóng góp thực địa:** cộng đồng sử dụng CVNSS4.0 và bộ gõ BilaKey.
-- **Cộng đồng Facebook:** [CVNSS4.0 và Bộ gõ BilaKey](https://www.facebook.com/groups/251479779599477).
-
-Tên tác giả, dự án và cộng đồng được ghi nhận nhằm thể hiện nguồn gốc tri thức và sự hỗ trợ; giấy phép của phần mã nguồn BilaKey mới vẫn là MIT. Xem [CREDITS.md](docs/CREDITS.md) và [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
-## 🌱 Đóng góp
-
-Lỗi mapping, trường hợp nhập nhằng, tương thích ứng dụng và cải tiến tài liệu đều được hoan nghênh. Mọi thay đổi quy tắc cần kèm golden vector hoặc regression test; xem [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Cộng đồng:** [CVNSS4.0 và Bộ gõ BilaKey](https://www.facebook.com/groups/251479779599477).
 
 ## 📄 Giấy phép
 
@@ -213,5 +162,3 @@ BilaKey PC được phát hành theo **MIT License**.
 ```text
 Copyright (c) 2026 Long Ngo
 ```
-
-Xem toàn văn tại [LICENSE](LICENSE).

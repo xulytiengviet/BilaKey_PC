@@ -5,12 +5,13 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 )
 
 const (
 	AppName    = "BilaKey PC"
-	AppVersion = "2.0.0"
+	AppVersion = "2.5.0"
 )
 
 type Config struct {
@@ -108,7 +109,18 @@ func Open() (*Store, error) {
 	} else if !errors.Is(readErr, os.ErrNotExist) {
 		return nil, readErr
 	}
+	cfg.InputMethod = normalizeInputMethod(cfg.InputMethod)
 	return &Store{path: path, cfg: cfg}, nil
+}
+
+func normalizeInputMethod(method string) string {
+	key := strings.ToUpper(strings.ReplaceAll(strings.TrimSpace(method), " ", ""))
+	switch key {
+	case "VNI/TELEX", "TELEX/VNI", "VNI", "TELEX", "VNITELEX", "TELEXVNI":
+		return "VNI/Telex"
+	default:
+		return "CVNSS4.0"
+	}
 }
 
 func (s *Store) Get() Config {
