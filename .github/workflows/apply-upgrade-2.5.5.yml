@@ -1,0 +1,59 @@
+name: Apply BilaKey 2.5.5 UI upgrade
+
+on:
+  push:
+    branches: ["feat/bilakey-2.5.5-ui-ux"]
+    paths:
+      - "tools/python/upgrade_bilakey_2_5_5.py"
+      - ".github/workflows/apply-upgrade-2.5.5.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-bilakey-2.5.5-ui
+  cancel-in-progress: true
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/bilakey-2.5.5-ui-ux
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.x"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply deterministic UI migration
+        run: python3 tools/python/upgrade_bilakey_2_5_5.py
+      - name: Format and verify
+        run: |
+          gofmt -w cmd internal
+          test -z "$(gofmt -l cmd internal)"
+          go test ./... -count=1
+          go vet ./...
+          go test -race ./internal/core ./internal/hotkey ./internal/macro ./internal/settings ./internal/typingstate -count=1
+          go test ./internal/core -run '^$' -fuzz FuzzDecodeCVNSSDoesNotPanic -fuzztime 5s
+      - name: Cross-build Windows
+        run: |
+          mkdir -p .build/windows
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o .build/windows/BilaKey-PC-2.5.5-x64.exe ./cmd/bilakey
+          CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o .build/windows/BilaKey-PC-2.5.5-x86.exe ./cmd/bilakey
+          CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o .build/windows/BilaKey-PC-2.5.5-arm64.exe ./cmd/bilakey
+      - name: Keep workflow files outside bot commit
+        run: git restore .github/workflows
+      - name: Commit upgraded source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: BilaKey PC 2.5.5 redesigned Win32 UI/UX"
+          git push origin HEAD:feat/bilakey-2.5.5-ui-ux
