@@ -1,9 +1,9 @@
 # ✅ BilaKey PC 2.5.0 đã đóng gói và phát hành
 
 - Release: https://github.com/xulytiengviet/BilaKey_PC/releases/tag/2.5.0
-- Source commit: `f8b6a615d8423b9102e8a157746d5913053796c6`
-- Workflow run: https://github.com/xulytiengviet/BilaKey_PC/actions/runs/30596883336
-- Published at UTC: `2026-07-31T01:39:44Z`
+- Source commit: `71c42ad5ea87a53249faf71500d8c1df7e1190f8`
+- Workflow run: https://github.com/xulytiengviet/BilaKey_PC/actions/runs/30596923225
+- Published at UTC: `2026-07-31T01:40:42Z`
 
 ## Assets đã xác minh
 
@@ -16,8 +16,8 @@
 ## SHA-256
 
 ```text
-9a4993f197e554d96713a78764e81712cc37720ff01cbf86a0dfadf12c791e66  BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe
-94c2670d1c3a94df1abbb4f786425a7a59001c5ed0a97ec2c1046f0c6ee33148  BilaKey-PC-2.5.0-CVNSS-Core-x64.exe
-f595d32047bdb7ad3ea4eb6bc75601b0957e3a1eab800e153e810ca99abccf94  BilaKey-PC-2.5.0-CVNSS-Core-x86.exe
-a6759889d7f071230626d863816d01727036996c117e242d8c20528cc44fab74  BilaKey-PC-2.5.0-Windows.zip
+165581e161453440e959c431c91130bf54545d61b3b0d211c5202d820d24a534  BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe
+2a2f7cba22037fd567a2bf94b665b7111136a0ee944a4dcdf0f8484d44328d7c  BilaKey-PC-2.5.0-CVNSS-Core-x64.exe
+fd2ae9e3d444a6603085212d7f326f63fa96f0f394f537dda1ddbfffeb589fdb  BilaKey-PC-2.5.0-CVNSS-Core-x86.exe
+1504bb139d830d1fd03a43ed820623e197560fa4d1dfcedb7b79d83dddb248aa  BilaKey-PC-2.5.0-Windows.zip
 ```
