@@ -5,11 +5,13 @@ on:
     branches: ["feat/bilakey-2.5.5-ui-ux"]
     paths:
       - "tools/python/upgrade_bilakey_2_5_5.py"
+      - "tools/python/fix_bilakey_2_5_5_ui.py"
       - ".github/workflows/apply-upgrade-2.5.5.yml"
   pull_request:
     branches: [main]
     paths:
       - "tools/python/upgrade_bilakey_2_5_5.py"
+      - "tools/python/fix_bilakey_2_5_5_ui.py"
       - ".github/workflows/apply-upgrade-2.5.5.yml"
   workflow_dispatch:
 
@@ -38,7 +40,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Apply deterministic UI migration
-        run: python3 tools/python/upgrade_bilakey_2_5_5.py
+        run: |
+          python3 tools/python/upgrade_bilakey_2_5_5.py
+          python3 tools/python/fix_bilakey_2_5_5_ui.py
       - name: Format and verify
         run: |
           gofmt -w cmd internal
