@@ -19,4 +19,6 @@ BilaKey 2.5.0 đơn giản hóa trải nghiệm xuống còn hai kiểu gõ: **C
 - `BilaKey-PC-2.5.0-Windows.zip`: gói đầy đủ.
 - `SHA256SUMS-2.5.0.txt`: bảng đối chiếu toàn vẹn.
 
+Release workflow chỉ hoàn tất sau khi xác minh đủ **ba tệp EXE, gói ZIP và bảng SHA-256**.
+
 Bản portable hiện chưa ký Authenticode. Chỉ tải từ release chính thức và kiểm tra SHA-256.
