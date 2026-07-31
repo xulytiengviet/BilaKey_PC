@@ -1,4 +1,4 @@
-name: BilaKey 2.5 CI
+name: BilaKey 2.5.5 CI
 
 on:
   push:
@@ -46,6 +46,7 @@ jobs:
           .build/collision_stats .build/collision_audit.tsv
       - name: Format, test and vet
         run: |
+          test "$(cat VERSION)" = "2.5.5"
           test -z "$(gofmt -l cmd internal)"
           go test ./... -count=1
           go vet ./...
@@ -78,9 +79,9 @@ jobs:
           CGO_ENABLED: "0"
         run: |
           mkdir -p dist
-          go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o dist/BilaKey-PC-2.5.0-CVNSS-Core-${{ matrix.suffix }}.exe ./cmd/bilakey
+          go build -trimpath -ldflags='-s -w -H windowsgui -buildid=' -o dist/BilaKey-PC-2.5.5-CVNSS-Core-${{ matrix.suffix }}.exe ./cmd/bilakey
       - uses: actions/upload-artifact@v4
         with:
-          name: BilaKey-PC-2.5.0-${{ matrix.suffix }}
+          name: BilaKey-PC-2.5.5-${{ matrix.suffix }}
           path: dist/*.exe
           if-no-files-found: error

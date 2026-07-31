@@ -27,13 +27,20 @@ type commitSnapshot struct {
 }
 
 type themeHandles struct {
-	font       uintptr
-	fontBold   uintptr
-	bgBrush    uintptr
-	panelBrush uintptr
-	editBrush  uintptr
-	cyanBrush  uintptr
-	grayBrush  uintptr
+	font        uintptr
+	fontSmall   uintptr
+	fontBold    uintptr
+	fontMethod  uintptr
+	fontTitle   uintptr
+	fontLogo    uintptr
+	bgBrush     uintptr
+	heroBrush   uintptr
+	panelBrush  uintptr
+	editBrush   uintptr
+	cyanBrush   uintptr
+	grayBrush   uintptr
+	softBrush   uintptr
+	statusBrush uintptr
 }
 
 type App struct {
@@ -248,22 +255,18 @@ func (a *App) refreshMainStatus() {
 	if !cfg.Enabled {
 		state = "ĐANG TẮT"
 	}
-	methodRole := "CVNSS4.0 CORE"
+	methodRole := "CVNSS4.0 · LÕI"
 	if cfg.InputMethod == core.MethodVNITelex {
 		methodRole = "VNI/TELEX · TỰ NHẬN DẠNG"
 	}
 	if hwnd := a.controls[idStatus]; hwnd != 0 {
-		setWindowText(hwnd, fmt.Sprintf("  %s  •  %s  •  Unicode  •  Ctrl+Shift+Space: bật/tắt", state, methodRole))
+		setWindowText(hwnd, fmt.Sprintf("   ✓  %s   •   %s   •   Unicode", state, methodRole))
 	}
 	if hwnd := a.controls[idCapsStatus]; hwnd != 0 {
-		setWindowText(hwnd, "Ctrl+Shift+1: CVNSS4.0  •  Ctrl+Shift+2: VNI/Telex  •  Ctrl+Shift+0: ứng viên")
+		setWindowText(hwnd, "   ⌨  Ctrl+Shift+1: CVNSS4.0   •   Ctrl+Shift+2: VNI/Telex   •   Ctrl+Shift+0: ứng viên")
 	}
 	if hwnd := a.controls[idToggle]; hwnd != 0 {
-		if cfg.Enabled {
-			setWindowText(hwnd, "TẮT")
-		} else {
-			setWindowText(hwnd, "BẬT")
-		}
+		setWindowText(hwnd, "BẬT/TẮT")
 	}
 	a.syncMethodCombo()
 	a.updateTrayIcon()
@@ -290,18 +293,20 @@ func (a *App) showHelp() {
 
 func (a *App) showAbout() {
 	text := "BilaKey PC " + settings.AppVersion + "\r\n" +
-		"CVNSS Core Edition\r\n\r\n" +
-		"Lõi nhập liệu: CVNSS4.0\r\n" +
-		"Kiểu gõ hợp nhất: VNI/Telex tự nhận dạng\r\n" +
-		"Rule oracle: CVNSS4.0 " + core.CVNSSRuleVersion + "\r\n" +
-		"Phát triển: Long Ngo, 2026\r\n" +
-		"Hỗ trợ CVNSS4.0: NNC Trần Tư Bình và cộng đồng.\r\n\r\n" +
-		"Runtime: Go + Win32 native.\r\n" +
-		"Toolchain audit: Python + C/C++ + Rust/Bamboo Core.\r\n" +
-		"Icon B nền xanh/chữ trắng · không telemetry · không network runtime."
-	messageBox(a.mainHwnd, "Thông tin", text, MB_OK|MB_ICONINFORMATION)
+		"Kiểu gõ dấu chữ tiếng Việt\r\n\r\n" +
+		"CVNSS4.0\r\n" +
+		"• Kiểu gõ chuyên dụng lấy CVNSS4.0 làm lõi trung tâm.\r\n" +
+		"• Có candidate graph, resolver và kiểm toán quy tắc.\r\n\r\n" +
+		"VNI + Telex hợp nhất\r\n" +
+		"• Gõ theo VNI hoặc Telex trong cùng một chế độ.\r\n" +
+		"• Hệ thống tự nhận dạng và xuất chữ tiếng Việt Unicode.\r\n\r\n" +
+		"Tác giả: Long Ngo phát triển\r\n" +
+		"Dự án: CVNSS4.0\r\n" +
+		"Hỗ trợ CVNSS4.0: NNC Trần Tư Bình và cộng đồng.\r\n" +
+		"Giấy phép: MIT\r\n\r\n" +
+		"Riêng tư: không telemetry, không network runtime."
+	messageBox(a.mainHwnd, "THÔNG TIN · BilaKey PC", text, MB_OK|MB_ICONINFORMATION)
 }
-
 func (a *App) showSettingsInfo() {
 	exe, _ := os.Executable()
 	text := "Thư mục cấu hình:\r\n" + a.configFolder() + "\r\n\r\n" +

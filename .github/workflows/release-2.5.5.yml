@@ -1,26 +1,23 @@
-name: Publish BilaKey PC 2.5.0
+name: Publish BilaKey PC 2.5.5
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/release-2.5.0.yml"
+      - ".github/workflows/release-2.5.5.yml"
       - "VERSION"
       - "README.md"
       - "CHANGELOG.md"
-      - "docs/RELEASE_NOTES_2.5.0.md"
-      - "internal/core/**"
-      - "internal/hotkey/**"
+      - "docs/RELEASE_NOTES_2.5.5.md"
       - "internal/settings/**"
       - "internal/win/**"
-      - "cmd/bilakey-cli/**"
 
 permissions:
   contents: write
 
 concurrency:
-  group: bilakey-release-2.5.0
+  group: bilakey-release-2.5.5
   cancel-in-progress: false
 
 jobs:
@@ -41,7 +38,7 @@ jobs:
 
       - name: Verify source
         run: |
-          test "$(cat VERSION)" = "2.5.0"
+          test "$(cat VERSION)" = "2.5.5"
           test -z "$(gofmt -l cmd internal)"
           go test ./... -count=1
           go vet ./...
@@ -51,13 +48,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          VERSION=2.5.0
+          VERSION=2.5.5
           mkdir -p dist "package/BilaKey-PC-${VERSION}-Windows"
 
           build_one() {
             local arch="$1"
             local suffix="$2"
-            echo "Building Windows ${suffix}..."
             CGO_ENABLED=0 GOOS=windows GOARCH="${arch}" \
               go build -trimpath \
               -ldflags='-s -w -H windowsgui -buildid=' \
@@ -73,16 +69,16 @@ jobs:
           cp LICENSE README.md CHANGELOG.md "package/BilaKey-PC-${VERSION}-Windows/"
 
           cat > "package/BilaKey-PC-${VERSION}-Windows/README_FIRST.txt" <<'TXT'
-          BILAKEY PC 2.5.0 — CVNSS4.0 + VNI/TELEX
+          BILAKEY PC 2.5.5 — UI/UX EDITION
 
           Chọn tệp:
-          - x64: máy Intel/AMD hiện đại, khuyến nghị.
+          - x64: máy Intel/AMD Windows 64-bit, khuyến nghị.
           - arm64: Windows on ARM, Snapdragon.
           - x86: Windows 32-bit cũ.
 
-          BilaKey chỉ có hai kiểu gõ:
-          1. CVNSS4.0.
-          2. VNI/Telex: gõ theo VNI hoặc Telex đều được.
+          Hai kiểu gõ:
+          1. CVNSS4.0 — lõi trung tâm.
+          2. VNI/Telex — gõ theo VNI hoặc Telex, tự nhận dạng.
 
           Phím tắt:
           - Ctrl+Shift+Space: bật/tắt.
@@ -90,8 +86,11 @@ jobs:
           - Ctrl+Shift+2: VNI/Telex.
           - Ctrl+Shift+0: đổi ứng viên CVNSS.
 
-          Bản này chưa ký Authenticode. Chỉ tải từ GitHub chính thức và kiểm tra SHA-256.
-          Phát triển: Long Ngo. Giấy phép: MIT.
+          Tác giả: Long Ngo phát triển.
+          Dự án: CVNSS4.0.
+          Giấy phép: MIT.
+
+          Bản portable chưa ký Authenticode. Chỉ tải từ GitHub chính thức và kiểm tra SHA-256.
           TXT
 
           (
@@ -106,17 +105,18 @@ jobs:
             cd dist
             sha256sum *.exe *.zip > "SHA256SUMS-${VERSION}.txt"
           )
+
           ls -lh dist
           cat "dist/SHA256SUMS-${VERSION}.txt"
 
-      - name: Align tag 2.5.0 with published source
+      - name: Align tag 2.5.5 with published source
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -fa 2.5.0 -m "BilaKey PC 2.5.0 — Unified VNI/Telex Edition" "${GITHUB_SHA}"
-          git push --force origin refs/tags/2.5.0
+          git tag -fa 2.5.5 -m "BilaKey PC 2.5.5 — UI/UX Edition" "${GITHUB_SHA}"
+          git push --force origin refs/tags/2.5.5
 
       - name: Create or update GitHub Release
         env:
@@ -124,23 +124,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if gh release view 2.5.0 >/dev/null 2>&1; then
-            gh release edit 2.5.0 \
-              --title "BilaKey PC 2.5.0 — Unified VNI/Telex Edition" \
-              --notes-file docs/RELEASE_NOTES_2.5.0.md
+          if gh release view 2.5.5 >/dev/null 2>&1; then
+            gh release edit 2.5.5 \
+              --title "BilaKey PC 2.5.5 — UI/UX Edition" \
+              --notes-file docs/RELEASE_NOTES_2.5.5.md
           else
-            gh release create 2.5.0 \
-              --title "BilaKey PC 2.5.0 — Unified VNI/Telex Edition" \
-              --notes-file docs/RELEASE_NOTES_2.5.0.md \
+            gh release create 2.5.5 \
+              --title "BilaKey PC 2.5.5 — UI/UX Edition" \
+              --notes-file docs/RELEASE_NOTES_2.5.5.md \
               --target "${GITHUB_SHA}"
           fi
 
-          gh release upload 2.5.0 \
-            dist/BilaKey-PC-2.5.0-CVNSS-Core-x64.exe \
-            dist/BilaKey-PC-2.5.0-CVNSS-Core-x86.exe \
-            dist/BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe \
-            dist/BilaKey-PC-2.5.0-Windows.zip \
-            dist/SHA256SUMS-2.5.0.txt \
+          gh release upload 2.5.5 \
+            dist/BilaKey-PC-2.5.5-CVNSS-Core-x64.exe \
+            dist/BilaKey-PC-2.5.5-CVNSS-Core-x86.exe \
+            dist/BilaKey-PC-2.5.5-CVNSS-Core-arm64.exe \
+            dist/BilaKey-PC-2.5.5-Windows.zip \
+            dist/SHA256SUMS-2.5.5.txt \
             --clobber
 
       - name: Verify published assets and record checksums
@@ -150,48 +150,43 @@ jobs:
         run: |
           set -euo pipefail
           required=(
-            BilaKey-PC-2.5.0-CVNSS-Core-x64.exe
-            BilaKey-PC-2.5.0-CVNSS-Core-x86.exe
-            BilaKey-PC-2.5.0-CVNSS-Core-arm64.exe
-            BilaKey-PC-2.5.0-Windows.zip
-            SHA256SUMS-2.5.0.txt
+            BilaKey-PC-2.5.5-CVNSS-Core-x64.exe
+            BilaKey-PC-2.5.5-CVNSS-Core-x86.exe
+            BilaKey-PC-2.5.5-CVNSS-Core-arm64.exe
+            BilaKey-PC-2.5.5-Windows.zip
+            SHA256SUMS-2.5.5.txt
           )
 
-          mapfile -t published < <(gh release view 2.5.0 --json assets --jq '.assets[].name')
+          mapfile -t published < <(gh release view 2.5.5 --json assets --jq '.assets[].name')
           for asset in "${required[@]}"; do
             printf '%s\n' "${published[@]}" | grep -Fxq "${asset}" || {
               echo "Missing release asset: ${asset}" >&2
               exit 1
             }
           done
-          echo "Verified: 3 EXE + ZIP + SHA-256."
 
           marker="$(mktemp)"
           {
-            echo '# ✅ BilaKey PC 2.5.0 đã đóng gói và phát hành'
+            echo '# ✅ BilaKey PC 2.5.5 đã đóng gói và phát hành'
             echo
-            echo "- Release: https://github.com/${GITHUB_REPOSITORY}/releases/tag/2.5.0"
+            echo "- Release: https://github.com/${GITHUB_REPOSITORY}/releases/tag/2.5.5"
             echo "- Source commit: \`${GITHUB_SHA}\`"
             echo "- Workflow run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
             echo "- Published at UTC: \`$(date -u +'%Y-%m-%dT%H:%M:%SZ')\`"
             echo
             echo '## Assets đã xác minh'
-            echo
             for asset in "${required[@]}"; do
-              echo "- [\`${asset}\`](https://github.com/${GITHUB_REPOSITORY}/releases/download/2.5.0/${asset})"
+              echo "- [\`${asset}\`](https://github.com/${GITHUB_REPOSITORY}/releases/download/2.5.5/${asset})"
             done
             echo
             echo '## SHA-256'
-            echo
             echo '```text'
-            cat dist/SHA256SUMS-2.5.0.txt
+            cat dist/SHA256SUMS-2.5.5.txt
             echo '```'
           } > "$marker"
 
           put_file() {
-            local path="$1"
-            local source="$2"
-            local message="$3"
+            local path="$1" source="$2" message="$3"
             local content current_sha
             content="$(base64 -w 0 < "$source")"
             current_sha="$(gh api "repos/${GITHUB_REPOSITORY}/contents/${path}?ref=main" --jq .sha 2>/dev/null || true)"
@@ -204,13 +199,13 @@ jobs:
             fi
           }
 
-          put_file docs/RELEASE_PUBLISHED_2.5.0.md "$marker" 'docs: record verified BilaKey 2.5.0 release assets'
-          put_file SHA256SUMS.txt dist/SHA256SUMS-2.5.0.txt 'release: publish BilaKey 2.5.0 SHA-256 checksums'
+          put_file docs/RELEASE_PUBLISHED_2.5.5.md "$marker" 'docs: record verified BilaKey 2.5.5 release assets'
+          put_file SHA256SUMS.txt dist/SHA256SUMS-2.5.5.txt 'release: publish BilaKey 2.5.5 SHA-256 checksums'
 
       - name: Preserve build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: BilaKey-PC-2.5.0-release-assets
+          name: BilaKey-PC-2.5.5-release-assets
           path: dist/*
           if-no-files-found: error
           retention-days: 30
