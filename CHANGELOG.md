@@ -1,5 +1,15 @@
 # 📝 Changelog
 
+## 2.5.5 — UI/UX Edition · 2026-07-31
+
+- Mở rộng cửa sổ chính lên 1000 × 650 px và tổ chức lại toàn bộ bố cục.
+- Tạo vùng nhận diện logo B, BilaKey PC, thông điệp CVNSS4.0 Core/Unicode/riêng tư/kiểm toán.
+- Tách hai kiểu gõ thành hai thẻ lớn: CVNSS4.0 và VNI/Telex tự động.
+- Thêm thanh trạng thái, thanh phím tắt và khu vực THÔNG TIN riêng.
+- Ghi rõ Long Ngo phát triển, Dự án CVNSS4.0 và giấy phép MIT trong GUI.
+- Thêm nút THÔNG TIN và nâng độ tương phản, kích thước chữ, khoảng cách điều khiển.
+- Duy trì engine hợp nhất VNI/Telex và CVNSS4.0 Core từ 2.5.0.
+
 ## 2.5.0 — Unified VNI/Telex Edition · 2026-07-31
 
 ### Hai kiểu gõ rõ ràng

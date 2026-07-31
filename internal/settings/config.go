@@ -11,7 +11,7 @@ import (
 
 const (
 	AppName    = "BilaKey PC"
-	AppVersion = "2.5.0"
+	AppVersion = "2.5.5"
 )
 
 type Config struct {

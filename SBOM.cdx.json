@@ -7,9 +7,9 @@
     "timestamp": "2026-07-30T00:00:00Z",
     "component": {
       "type": "application",
-      "bom-ref": "pkg:generic/bilakey-pc@2.5.0",
+      "bom-ref": "pkg:generic/bilakey-pc@2.5.5",
       "name": "BilaKey PC",
-      "version": "2.5.0",
+      "version": "2.5.5",
       "description": "Windows Unicode input method with CVNSS4.0 as the primary core and Telex/VNI compatibility adapters",
       "licenses": [{"license": {"id": "MIT"}}],
       "authors": [{"name": "Long Ngo"}]
@@ -46,7 +46,7 @@
   ],
   "dependencies": [
     {
-      "ref": "pkg:generic/bilakey-pc@2.5.0",
+      "ref": "pkg:generic/bilakey-pc@2.5.5",
       "dependsOn": [
         "pkg:golang/std@1.23",
         "urn:bilakey:cvnss4.0:5.1.0-bilakey-core"
@@ -55,7 +55,7 @@
   ],
   "annotations": [
     {
-      "subjects": ["pkg:generic/bilakey-pc@2.5.0"],
+      "subjects": ["pkg:generic/bilakey-pc@2.5.5"],
       "annotator": {"component": {"type": "application", "name": "BilaKey release audit"}},
       "timestamp": "2026-07-30T00:00:00Z",
       "text": "Bamboo Core informed the Telex/VNI adapters but is not linked as a runtime component. CVNSS4.0 is the primary core. See THIRD_PARTY_NOTICES.md."

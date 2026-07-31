@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-VERSION="2.5.0"
+VERSION="2.5.5"
 GO_BIN="${GO_BIN:-go}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 GOFMT_BIN="${GOFMT_BIN:-$(command -v gofmt)}"
